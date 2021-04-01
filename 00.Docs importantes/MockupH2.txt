@@ -1,0 +1,27 @@
+insert into area (NM_AREA ) values ('EPC');
+insert into area (NM_AREA ) values ('P041 - SEA');
+insert into area (NM_AREA ) values ('P041 - FOR');
+insert into area (NM_AREA ) values ('CPMV');
+insert into area (NM_AREA ) values ('LIN II');
+
+insert into projeto (NM_PROJETO) values ('Reforma LIN Colheita');
+insert into projeto (NM_PROJETO) values ('Sistema CIP');
+insert into projeto (NM_PROJETO) values ('Sistema Ultra');
+insert into projeto (NM_PROJETO) values ('CPMV');
+insert into projeto (NM_PROJETO) values ('LIN II');
+
+insert into Atividade_Documento (nm_atividade_documento) values ('Avaliação de impacto');
+insert into Atividade_Documento (nm_atividade_documento) values ('Especificação funcional');
+insert into Atividade_Documento (nm_atividade_documento) values ('Fluxograma de engenharia');
+insert into Atividade_Documento (nm_atividade_documento) values ('Folha de dados');
+insert into Atividade_Documento (nm_atividade_documento) values ('Planilha quantitativa');
+
+insert into status (NM_STATUS) values ('Reforma LIN Colheita');
+insert into status (NM_STATUS)values ('Sistema CIP');
+insert into status (NM_STATUS)values ('Sistema Ultra');
+
+insert into usuario (NM_USUARIO, TX_SENHA) values ('Isabela.Quental', 1111);
+insert into usuario (NM_USUARIO, TX_SENHA) values ('Gabriela.Santos', 2222);
+insert into usuario (NM_USUARIO, TX_SENHA) values ('Gustavo.Luiz', 3333);
+insert into usuario (NM_USUARIO, TX_SENHA) values ('William.goncalves', 4444);
+insert into usuario (NM_USUARIO, TX_SENHA) values ('Guilherme.Dasilva', 5555)

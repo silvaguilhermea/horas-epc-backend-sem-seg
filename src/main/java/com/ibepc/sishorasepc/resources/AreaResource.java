@@ -12,7 +12,7 @@ import com.ibepc.sishorasepc.services.AreaService;
 
 
 @RestController
-@RequestMapping(value = "/Areas") /* Mapeia o endpoint no navegador */
+@RequestMapping(value = "/areas") /* Mapeia o endpoint no navegador */
 public class AreaResource {
 	
 	@Autowired /* instância objetos automaticamente */

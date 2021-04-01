@@ -11,7 +11,7 @@ import com.ibepc.sishorasepc.domain.Projeto;
 import com.ibepc.sishorasepc.services.ProjetoService;
 
 @RestController
-@RequestMapping(value = "/Projetos") /* Mapeia o endpoint no navegador */
+@RequestMapping(value = "/projetos") /* Mapeia o endpoint no navegador */
 public class ProjetoResource {
 
 	@Autowired /* instância objetos automaticamente */

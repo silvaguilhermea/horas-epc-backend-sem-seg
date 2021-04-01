@@ -13,7 +13,7 @@ import com.ibepc.sishorasepc.services.AtividadeDocumentoService;
 
 
 @RestController
-@RequestMapping(value = "/AtvDocs") /* Mapeia o endpoint no navegador */
+@RequestMapping(value = "/atvdocs") /* Mapeia o endpoint no navegador */
 public class AtividadeDocumentoResource {
 
 	@Autowired /* instância objetos automaticamente */

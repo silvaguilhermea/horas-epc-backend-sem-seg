@@ -1,11 +1,17 @@
 package com.ibepc.sishorasepc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /*Implementação da classe Área*/
 
@@ -18,6 +24,10 @@ public class Area implements Serializable {
 	private Integer id;
 	private String nm_area;
 	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "area")
+	private List<Projeto> projeto = new ArrayList<>();
+	
 	public Area() {
 	}
 
@@ -25,7 +35,7 @@ public class Area implements Serializable {
 		super();
 		this.id = id;
 		this.nm_area = nm_area;
-	}
+		}
 
 	public Integer getId() {
 		return id;
@@ -42,6 +52,15 @@ public class Area implements Serializable {
 	public void setNm_area(String nm_area) {
 		this.nm_area = nm_area;
 	}
+	
+	public List<Projeto> getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(List<Projeto> projeto) {
+		this.projeto = projeto;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -67,6 +86,8 @@ public class Area implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 	
 	
 	

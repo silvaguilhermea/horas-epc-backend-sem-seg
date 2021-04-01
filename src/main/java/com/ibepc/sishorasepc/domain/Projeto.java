@@ -6,6 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /*Implementação da classe Projeto*/
 
@@ -18,12 +23,20 @@ public class Projeto implements Serializable{
 	private Integer id;
 	private String nm_projeto;
 	
-	public Projeto() {}
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name = "area_id") /*cria a chave estrangeira*/
+	private Area area;
+
+	public Projeto() {
+	}
 	
-	public Projeto(Integer id, String nm_projeto) {
+
+	public Projeto(Integer id, String nm_projeto, Area area) {
 		super();
 		this.id = id;
 		this.nm_projeto = nm_projeto;
+		this.area = area;
 	}
 
 	public Integer getId() {
@@ -41,7 +54,14 @@ public class Projeto implements Serializable{
 	public void setNm_projeto(String nm_projeto) {
 		this.nm_projeto = nm_projeto;
 	}
+	
+	public Area getArea() {
+		return area;
+	}
 
+	public void setArea(Area area) {
+		this.area = area;
+	}
 
 	@Override
 	public int hashCode() {

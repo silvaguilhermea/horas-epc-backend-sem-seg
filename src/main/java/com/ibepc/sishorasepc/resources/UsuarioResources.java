@@ -11,7 +11,7 @@ import com.ibepc.sishorasepc.domain.Usuario;
 import com.ibepc.sishorasepc.services.UsuarioService;
 
 @RestController
-@RequestMapping(value = "/Usuarios") /* Mapeia o endpoint no navegador */
+@RequestMapping(value = "/usuarios") /* Mapeia o endpoint no navegador */
 public class UsuarioResources {
 
 	@Autowired /* instância objetos automaticamente */

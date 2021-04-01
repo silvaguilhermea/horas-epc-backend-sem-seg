@@ -11,7 +11,7 @@ import com.ibepc.sishorasepc.domain.Status;
 import com.ibepc.sishorasepc.services.StatusService;
 
 @RestController
-@RequestMapping(value = "/Status") /* Mapeia o endpoint no navegador */
+@RequestMapping(value = "/status") /* Mapeia o endpoint no navegador */
 public class StatusResource {
 
 	@Autowired /* instância objetos automaticamente */
