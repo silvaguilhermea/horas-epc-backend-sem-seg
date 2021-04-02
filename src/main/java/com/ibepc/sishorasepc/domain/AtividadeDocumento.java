@@ -2,7 +2,10 @@ package com.ibepc.sishorasepc.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.AssociationOverride;
+import javax.persistence.AssociationOverrides;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,31 +13,39 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class AtividadeDocumento implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nm_atividade_documento;
-	
-	public AtividadeDocumento() {
-		
-	}
-	
-	@JsonBackReference
-	@ManyToOne
-	@JoinColumn(name = "setor_id") /*cria a chave estrangeira*/
-	private Setor setor;
 
-	public AtividadeDocumento(Integer id, String nm_atividade_documento, Setor setor) {
+	  @JsonBackReference
+	  @ManyToOne
+	  @JoinColumn(name = "setor_id") /* cria a chave estrangeira */
+	  private Setor setor;
+	  
+	  @JsonBackReference
+	  @ManyToOne
+	  @JoinColumn(name = "projeto_id") /* cria a chave estrangeira */
+	  private Projeto projeto;
+	 
+	  public AtividadeDocumento() {
+
+	  }	
+
+	public AtividadeDocumento(Integer id, String nm_atividade_documento, Setor setor, Projeto projeto) {
 		super();
 		this.id = id;
 		this.nm_atividade_documento = nm_atividade_documento;
 		this.setor = setor;
+		this.projeto = projeto;
 	}
+
 
 	public Integer getId() {
 		return id;
@@ -58,6 +69,14 @@ public class AtividadeDocumento implements Serializable {
 
 	public void setSetor(Setor setor) {
 		this.setor = setor;
+	}
+
+	public Projeto getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
 	}
 
 	@Override
@@ -84,5 +103,5 @@ public class AtividadeDocumento implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }

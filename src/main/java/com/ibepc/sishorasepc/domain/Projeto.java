@@ -33,10 +33,11 @@ public class Projeto implements Serializable{
 	@JoinColumn(name = "area_id") /*cria a chave estrangeira*/
 	private Area area;
 	
-	@JsonManagedReference 
+	@JsonManagedReference
 	@ManyToMany (mappedBy = "projeto")
-	private List<Setor> setor = new ArrayList<>();
-
+	private List<AtividadeDocumento> atividadeDocumento = new ArrayList<>();
+	
+	
 	public Projeto() {
 	}
 	
@@ -72,14 +73,13 @@ public class Projeto implements Serializable{
 		this.area = area;
 	}
 
-	public List<Setor> getSetor() {
-		return setor;
+	public List<AtividadeDocumento> getAtividadeDocumento() {
+		return atividadeDocumento;
 	}
 
-	public void setSetor(List<Setor> setor) {
-		this.setor = setor;
+	public void setAtividadeDocumento(List<AtividadeDocumento> atividadeDocumento) {
+		this.atividadeDocumento = atividadeDocumento;
 	}
-
 
 	@Override
 	public int hashCode() {

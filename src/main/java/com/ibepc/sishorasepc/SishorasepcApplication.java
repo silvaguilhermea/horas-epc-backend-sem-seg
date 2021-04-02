@@ -49,33 +49,32 @@ public class SishorasepcApplication implements CommandLineRunner {
 		Setor s1 = new Setor(null, "Automação");
 		Setor s2 = new Setor(null, "Eng. Processos");
 		
-		AtividadeDocumento atvdoc1 = new AtividadeDocumento(null,"Arquitetura de rede",s1);
-		AtividadeDocumento atvdoc2 = new AtividadeDocumento(null,"Lista de IOs",s1);
-		AtividadeDocumento atvdoc3 = new AtividadeDocumento(null,"Fluxograma",s2);
-		AtividadeDocumento atvdoc4 = new AtividadeDocumento(null,"Lista Quantitativa",s2);
+		AtividadeDocumento atvdoc1 = new AtividadeDocumento(null,"Arquitetura de rede",s1,p1);
+		AtividadeDocumento atvdoc2 = new AtividadeDocumento(null,"Lista de IOs",s1,p1);
+		AtividadeDocumento atvdoc3 = new AtividadeDocumento(null,"Fluxograma",s2,p1);
+		AtividadeDocumento atvdoc4 = new AtividadeDocumento(null,"Lista Quantitativa",s2,p1);
+		AtividadeDocumento atvdoc5 = new AtividadeDocumento(null,"P&D",s2,p2);
+		AtividadeDocumento atvdoc6 = new AtividadeDocumento(null,"Desenvol. software",s1,p3);
 		
 
 		/* Relaciona Áreas com Projetos */
 		a1.getProjeto().addAll(Arrays.asList(p1, p2));
-		a2.getProjeto().addAll(Arrays.asList(p3));
-			  
-		/* Relaciona Projetos com Setores */
-		p1.getSetor().addAll(Arrays.asList(s1,s2));
-		p2.getSetor().addAll(Arrays.asList(s2));
-		p3.getSetor().addAll(Arrays.asList(s1));
-		
-		/* Relaciona Setores com Projetos */
-		s1.getProjeto().addAll(Arrays.asList(p1,p3));
-		s2.getProjeto().addAll(Arrays.asList(p1,p2));
+		a2.getProjeto().addAll(Arrays.asList(p3)); 
 		
 		/* Relaciona Setores com documentos */
-		s1.getAtividadeDocumento().addAll(Arrays.asList(atvdoc1,atvdoc2));
-		s2.getAtividadeDocumento().addAll(Arrays.asList(atvdoc3,atvdoc4));
+		s1.getAtividadeDocumento().addAll(Arrays.asList(atvdoc1,atvdoc2,atvdoc6));
+		s2.getAtividadeDocumento().addAll(Arrays.asList(atvdoc3,atvdoc4,atvdoc5));
+		
+		/* Relaciona Projetos com documentos */
+		p1.getAtividadeDocumento().addAll(Arrays.asList(atvdoc1,atvdoc2,atvdoc3,atvdoc4));
+		p2.getAtividadeDocumento().addAll(Arrays.asList(atvdoc5));
+		p3.getAtividadeDocumento().addAll(Arrays.asList(atvdoc6));
 
 		areaRepository.saveAll(Arrays.asList(a1, a2));
 		projetoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		SetorRepository.saveAll(Arrays.asList(s1, s2));
-		atividadeDocumentoRepository.saveAll(Arrays.asList(atvdoc1, atvdoc2, atvdoc3, atvdoc4));
+		atividadeDocumentoRepository.saveAll(Arrays.asList(
+				atvdoc1, atvdoc2,atvdoc3, atvdoc4, atvdoc5, atvdoc6));
 		
 	}
 }

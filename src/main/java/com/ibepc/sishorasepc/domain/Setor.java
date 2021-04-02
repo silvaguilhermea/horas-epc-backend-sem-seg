@@ -27,18 +27,11 @@ public class Setor implements Serializable {
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nm_setor;
-	
-	@JsonBackReference 
-	@ManyToMany
-	@JoinTable(name = "SETOR_PROJETO", /* nome da tabela extra do relacionamento muitos para muitos */
-		joinColumns = @JoinColumn(name = "setor_id"), /* nome da primeira coluna da tabela */
-		inverseJoinColumns = @JoinColumn (name = "projeto_id")/* nome da segunda coluna da tabela */
-			) 
-	private List<Projeto> projeto = new ArrayList<>();
-	
+		
 	@JsonManagedReference
 	@OneToMany(mappedBy = "setor")
 	private List<AtividadeDocumento> atividadeDocumento = new ArrayList<>();
+	
 	
 	public Setor() {
 	}
@@ -66,20 +59,12 @@ public class Setor implements Serializable {
 		this.nm_setor = nm_setor;
 	}
 	
-	public List<Projeto> getProjeto() {
-		return projeto;
-	}
-
-	public void setProjeto(List<Projeto> projeto) {
-		this.projeto = projeto;
-	}
-
 	public List<AtividadeDocumento> getAtividadeDocumento() {
 		return atividadeDocumento;
 	}
 
 	public void setAtividadeDocumento(List<AtividadeDocumento> atividadeDocumento) {
-		atividadeDocumento = atividadeDocumento;
+		this.atividadeDocumento = atividadeDocumento;
 	}
 
 	@Override
