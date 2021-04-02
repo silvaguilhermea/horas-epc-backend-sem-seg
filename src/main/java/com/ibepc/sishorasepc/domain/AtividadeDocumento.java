@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class AtividadeDocumento implements Serializable {
@@ -20,10 +24,16 @@ public class AtividadeDocumento implements Serializable {
 		
 	}
 	
-	public AtividadeDocumento(Integer id, String nm_atividade_documento) {
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name = "setor_id") /*cria a chave estrangeira*/
+	private Setor setor;
+
+	public AtividadeDocumento(Integer id, String nm_atividade_documento, Setor setor) {
 		super();
 		this.id = id;
 		this.nm_atividade_documento = nm_atividade_documento;
+		this.setor = setor;
 	}
 
 	public Integer getId() {
@@ -40,6 +50,14 @@ public class AtividadeDocumento implements Serializable {
 
 	public void setNm_atividade_documento(String nm_atividade_documento) {
 		this.nm_atividade_documento = nm_atividade_documento;
+	}
+
+	public Setor getSetor() {
+		return setor;
+	}
+
+	public void setSetor(Setor setor) {
+		this.setor = setor;
 	}
 
 	@Override
