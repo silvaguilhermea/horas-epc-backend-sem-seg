@@ -63,12 +63,12 @@ public class SishorasepcApplication implements CommandLineRunner {
 		Setor s1 = new Setor(null, "Automação");
 		Setor s2 = new Setor(null, "Eng. Processos");
 		
-		AtividadeDocumento atvdoc1 = new AtividadeDocumento(s1,p1,"Arquitetura de rede");
-		AtividadeDocumento atvdoc2 = new AtividadeDocumento(s1,p1,"Lista de IOs");
-		AtividadeDocumento atvdoc3 = new AtividadeDocumento(s2,p1,"Fluxograma");
-		AtividadeDocumento atvdoc4 = new AtividadeDocumento(s2,p1,"Lista Quantitativa");
-		AtividadeDocumento atvdoc5 = new AtividadeDocumento(s2,p2,"P&D");
-		AtividadeDocumento atvdoc6 = new AtividadeDocumento(s1,p3,"Desenvol. software");
+		AtividadeDocumento atvdoc1 = new AtividadeDocumento(null,s1,p1,"Arquitetura de rede");
+		AtividadeDocumento atvdoc2 = new AtividadeDocumento(null,s1,p1,"Lista de IOs");
+		AtividadeDocumento atvdoc3 = new AtividadeDocumento(null,s2,p1,"Fluxograma");
+		AtividadeDocumento atvdoc4 = new AtividadeDocumento(null,s2,p1,"Lista Quantitativa");
+		AtividadeDocumento atvdoc5 = new AtividadeDocumento(null,s2,p2,"P&D");
+		AtividadeDocumento atvdoc6 = new AtividadeDocumento(null,s1,p3,"Desenvol. software");
 		
 		
 		/* Relaciona Áreas com Projetos */

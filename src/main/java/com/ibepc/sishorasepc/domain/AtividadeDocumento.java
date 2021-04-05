@@ -2,8 +2,11 @@ package com.ibepc.sishorasepc.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.EmbeddedId;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -12,9 +15,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class AtividadeDocumento implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	private Integer id;
 
 	@JsonIgnore
-	@EmbeddedId
+	@Embedded
 	private AtividadeDocumentoPK idt = new AtividadeDocumentoPK();
 	
 	private String nm_atividade_documento;
@@ -23,8 +29,9 @@ public class AtividadeDocumento implements Serializable {
 
 	  }	
 
-	public AtividadeDocumento(Setor setor,Projeto projeto, String nm_atividade_documento) {
+	public AtividadeDocumento(Integer id, Setor setor,Projeto projeto, String nm_atividade_documento) {
 		super();
+		this.id = id;
 		idt.setSetor(setor);
 		idt.setProjeto(projeto);
 		this.nm_atividade_documento = nm_atividade_documento;
@@ -37,11 +44,21 @@ public class AtividadeDocumento implements Serializable {
 	 * public void setId(Integer id) { this.id = id; }
 	 */
 
+	
+	
 	@JsonManagedReference
 	public Setor getSetor() {
 		return idt.getSetor();
 	}
 	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	@JsonIgnore
 	public Projeto getProjeto() {
 		return idt.getProjeto();
