@@ -1,7 +1,9 @@
 package com.ibepc.sishorasepc.domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,12 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /*Implementação da classe Projeto*/
@@ -28,25 +30,34 @@ public class Projeto implements Serializable{
 	private Integer id;
 	private String nm_projeto;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	private Date dt_inicio; /* data de abertura do projeto */
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	private Date dt_fim_planejado; /* data planejada de fim do projeto */
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	private Date dt_fim_real; /* data real de fim do projeto */
+		
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "area_id") /*cria a chave estrangeira*/
 	private Area area;
 	
-	@JsonManagedReference
-	@ManyToMany (mappedBy = "projeto")
+	@OneToMany (mappedBy = "idt.projeto")
 	private List<AtividadeDocumento> atividadeDocumento = new ArrayList<>();
-	
 	
 	public Projeto() {
 	}
-	
 
-	public Projeto(Integer id, String nm_projeto, Area area) {
+	public Projeto(Integer id, String nm_projeto, Area area,Date dt_inicio, Date dt_fim_planejado, Date dt_fim_real) {
 		super();
 		this.id = id;
 		this.nm_projeto = nm_projeto;
 		this.area = area;
+		this.dt_inicio = dt_inicio;
+		this.dt_fim_planejado = dt_fim_planejado;
+		this.dt_fim_real = dt_fim_real;
 	}
 
 	public Integer getId() {
@@ -79,6 +90,30 @@ public class Projeto implements Serializable{
 
 	public void setAtividadeDocumento(List<AtividadeDocumento> atividadeDocumento) {
 		this.atividadeDocumento = atividadeDocumento;
+	}
+	
+	public Date getDt_inicio() {
+		return dt_inicio;
+	}
+
+	public void setDt_inicio(Date dt_inicio) {
+		this.dt_inicio = dt_inicio;
+	}
+
+	public Date getDt_fim_planejado() {
+		return dt_fim_planejado;
+	}
+
+	public void setDt_fim_planejado(Date dt_fim_planejado) {
+		this.dt_fim_planejado = dt_fim_planejado;
+	}
+
+	public Date getDt_fim_real() {
+		return dt_fim_real;
+	}
+
+	public void setDt_fim_real(Date dt_fim_real) {
+		this.dt_fim_real = dt_fim_real;
 	}
 
 	@Override

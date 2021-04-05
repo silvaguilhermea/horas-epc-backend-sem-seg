@@ -1,6 +1,9 @@
 package com.ibepc.sishorasepc;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -34,29 +37,40 @@ public class SishorasepcApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(SishorasepcApplication.class, args);
 	}
-
+		
+			
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-
+		
+		/* formas diferentes de se trabalhar com datas, através de Calendar e Format */
+		
+		Calendar c = Calendar.getInstance();
+		c.set(2021, Calendar.APRIL, 30, 10, 52);
+		Date datafim = c.getTime();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm" );
+		
+		/*-------------------------*/
+				
 		Area a1 = new Area(null, "P59");
 		Area a2 = new Area(null, "P41 - FOR");
 
-		Projeto p1 = new Projeto(null, "CIP Clarificação", a1);
-		Projeto p2 = new Projeto(null, "Reforma Colheita", a1);
-		Projeto p3 = new Projeto(null, "For sigle use", a2);
+		Projeto p1 = new Projeto(null, "CIP Clarificação", a1,c.getInstance().getTime(), datafim, sdf.parse("24/05/2021 08:34"));
+		Projeto p2 = new Projeto(null, "Reforma Colheita", a1,c.getInstance().getTime(),datafim,null);
+		Projeto p3 = new Projeto(null, "For sigle use", a2,c.getInstance().getTime(),datafim,null);
 
 		Setor s1 = new Setor(null, "Automação");
 		Setor s2 = new Setor(null, "Eng. Processos");
 		
-		AtividadeDocumento atvdoc1 = new AtividadeDocumento(null,"Arquitetura de rede",s1,p1);
-		AtividadeDocumento atvdoc2 = new AtividadeDocumento(null,"Lista de IOs",s1,p1);
-		AtividadeDocumento atvdoc3 = new AtividadeDocumento(null,"Fluxograma",s2,p1);
-		AtividadeDocumento atvdoc4 = new AtividadeDocumento(null,"Lista Quantitativa",s2,p1);
-		AtividadeDocumento atvdoc5 = new AtividadeDocumento(null,"P&D",s2,p2);
-		AtividadeDocumento atvdoc6 = new AtividadeDocumento(null,"Desenvol. software",s1,p3);
+		AtividadeDocumento atvdoc1 = new AtividadeDocumento(s1,p1,"Arquitetura de rede");
+		AtividadeDocumento atvdoc2 = new AtividadeDocumento(s1,p1,"Lista de IOs");
+		AtividadeDocumento atvdoc3 = new AtividadeDocumento(s2,p1,"Fluxograma");
+		AtividadeDocumento atvdoc4 = new AtividadeDocumento(s2,p1,"Lista Quantitativa");
+		AtividadeDocumento atvdoc5 = new AtividadeDocumento(s2,p2,"P&D");
+		AtividadeDocumento atvdoc6 = new AtividadeDocumento(s1,p3,"Desenvol. software");
 		
-
+		
 		/* Relaciona Áreas com Projetos */
 		a1.getProjeto().addAll(Arrays.asList(p1, p2));
 		a2.getProjeto().addAll(Arrays.asList(p3)); 
