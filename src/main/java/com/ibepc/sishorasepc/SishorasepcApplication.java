@@ -58,10 +58,10 @@ public class SishorasepcApplication implements CommandLineRunner {
 
 		/*-------------------------*/
 
-		Usuario usr1 = new Usuario(null, "William.goncalves");
-		Usuario usr2 = new Usuario(null, "Guilherm.dasilva");
-		Usuario usr3 = new Usuario(null, "Isabela.Quental");
-		Usuario usr4 = new Usuario(null, "Oswaldo.Neto");
+		Usuario usr1 = new Usuario(null, "William.goncalves", null,"William Felipe Gonçalves","william.goncalves@butantan.gov.br",c.getInstance().getTime());
+		Usuario usr2 = new Usuario(null, "Guilherme.dasilva", null, "Guillherme Antônio da Silva","guilherme.dasilva@butantan.gov.br",c.getInstance().getTime());
+		Usuario usr3 = new Usuario(null, "Isabela.Quental",null, "Isabela de Campos Quental","isabela.quental@butantan.gov.br",c.getInstance().getTime());
+		Usuario usr4 = new Usuario(null, "Oswaldo.Henrique",null,"Oswaldo Henrique Neto","oswaldo.henrique@butantan.gov.br",c.getInstance().getTime());
 
 		Area a1 = new Area(null, "P59");
 		Area a2 = new Area(null, "P41 - FOR");

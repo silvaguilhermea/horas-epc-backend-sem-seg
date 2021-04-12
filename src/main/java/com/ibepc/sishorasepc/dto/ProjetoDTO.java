@@ -26,11 +26,7 @@ public class ProjetoDTO implements Serializable{
 	private String area;	
 	private List<String> setor;
 	
-	/*
-	 * private List<AtividadeDocumento> atividadeDocumento = new ArrayList<>();
-	 * private List<Setor> setor = new ArrayList<>();
-	 */
-	
+
 	public ProjetoDTO() {
 		
 	}
@@ -43,7 +39,6 @@ public class ProjetoDTO implements Serializable{
 		this.dt_fim_planejado = projeto.getDt_fim_planejado();
 		this.dt_fim_real = projeto.getDt_fim_real();
 		this.area = projeto.getArea().getNm_area();
-		
 				
 	}
 

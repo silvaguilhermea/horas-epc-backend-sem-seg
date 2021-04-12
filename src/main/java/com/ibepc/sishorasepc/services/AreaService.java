@@ -1,21 +1,34 @@
 package com.ibepc.sishorasepc.services;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ibepc.sishorasepc.domain.Area;
+import com.ibepc.sishorasepc.dto.AreaDTO;
 import com.ibepc.sishorasepc.repositories.AreaRepository;
 
 @Service
 public class AreaService {
-	
+
 	@Autowired
 	public AreaRepository repo;
-	
+
 	public Area buscar(Integer id) {
-		 Optional<Area > obj = repo.findById(id);
-		return obj.orElse(null); 
+		Optional<Area> obj = repo.findById(id);
+		return obj.orElse(null);
+	}
+
+	public List<Area> buscarTudo() {
+		List<Area> areas = repo.findAll();
+		return areas;
+	}
+
+	public List<AreaDTO> converteDTO(List<Area> areas) {
+		List<AreaDTO> listDto = areas.stream().map(obj -> new AreaDTO(obj)).collect(Collectors.toList());
+		return listDto;
 	}
 }

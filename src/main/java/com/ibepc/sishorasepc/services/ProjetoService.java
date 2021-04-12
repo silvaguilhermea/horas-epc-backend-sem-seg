@@ -27,7 +27,6 @@ public class ProjetoService{
 		return projetos; 
 	}
 	
-	
 	public List<ProjetoDTO> converteDTO(List<Projeto> projetos) {
 		List<ProjetoDTO> listDto = projetos.stream().map(obj -> new ProjetoDTO(obj)).collect(Collectors.toList());
 		return listDto;
