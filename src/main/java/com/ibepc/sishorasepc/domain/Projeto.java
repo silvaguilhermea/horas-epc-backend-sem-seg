@@ -1,7 +1,6 @@
 package com.ibepc.sishorasepc.domain;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,9 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /*Implementação da classe Projeto*/
 
@@ -39,26 +37,30 @@ public class Projeto implements Serializable{
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date dt_fim_real; /* data real de fim do projeto */
 		
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "area_id") /*cria a chave estrangeira*/
 	private Area area;
 	
-	@OneToMany (mappedBy = "idt.projeto")
-	private List<AtividadeDocumento> atividadeDocumento = new ArrayList<>();
+	@OneToMany (mappedBy = "projeto")
+	private List<Setor> setores = new ArrayList<>();
+	
+	@OneToMany (mappedBy = "projeto")
+	private List<AtividadeDocumento> atividadeDocumentos = new ArrayList<>();
 	
 	public Projeto() {
 	}
 
-	public Projeto(Integer id, String nm_projeto, Area area,Date dt_inicio, Date dt_fim_planejado, Date dt_fim_real) {
+	public Projeto(Integer id, String nm_projeto, Area area, Date dt_inicio, Date dt_fim_planejado, Date dt_fim_real) {
 		super();
 		this.id = id;
 		this.nm_projeto = nm_projeto;
-		this.area = area;
 		this.dt_inicio = dt_inicio;
 		this.dt_fim_planejado = dt_fim_planejado;
 		this.dt_fim_real = dt_fim_real;
+		this.area = area;
 	}
+
 
 	public Integer getId() {
 		return id;
@@ -84,14 +86,6 @@ public class Projeto implements Serializable{
 		this.area = area;
 	}
 
-	public List<AtividadeDocumento> getAtividadeDocumento() {
-		return atividadeDocumento;
-	}
-
-	public void setAtividadeDocumento(List<AtividadeDocumento> atividadeDocumento) {
-		this.atividadeDocumento = atividadeDocumento;
-	}
-	
 	public Date getDt_inicio() {
 		return dt_inicio;
 	}
@@ -114,6 +108,22 @@ public class Projeto implements Serializable{
 
 	public void setDt_fim_real(Date dt_fim_real) {
 		this.dt_fim_real = dt_fim_real;
+	}
+	
+	public List<Setor> getSetores() {
+		return setores;
+	}
+
+	public void setSetores(List<Setor> setores) {
+		this.setores = setores;
+	}
+	
+	public List<AtividadeDocumento> getAtividadeDocumentos() {
+		return atividadeDocumentos;
+	}
+
+	public void setAtividadeDocumentos(List<AtividadeDocumento> atividadeDocumentos) {
+		this.atividadeDocumentos = atividadeDocumentos;
 	}
 
 	@Override

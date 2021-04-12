@@ -8,10 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /*Implementação da classe Área*/
 
@@ -23,20 +26,23 @@ public class Setor implements Serializable {
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nm_setor;
-
-	@JsonBackReference
-	@OneToMany(mappedBy = "idt.setor")
-	private List<AtividadeDocumento> atividadeDocumento = new ArrayList<>();
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn (name= "projeto_id")
+	private Projeto projeto;
+	
+	@OneToMany (mappedBy = "setor")
+	private List<AtividadeDocumento> atividadeDocumentos = new ArrayList<>();
 	
 	public Setor() {
 	}
 
-	public Setor(Integer id, String nm_setor) {
+	public Setor(Integer id, String nm_setor, Projeto projeto) {
 		super();
 		this.id = id;
 		this.nm_setor = nm_setor;
-
+		this.projeto = projeto;
 	}
 
 	public Integer getId() {
@@ -54,13 +60,21 @@ public class Setor implements Serializable {
 	public void setNm_setor(String nm_setor) {
 		this.nm_setor = nm_setor;
 	}
-	
-	public List<AtividadeDocumento> getAtividadeDocumento() {
-		return atividadeDocumento;
+
+	public Projeto getProjeto() {
+		return projeto;
 	}
 
-	public void setAtividadeDocumento(List<AtividadeDocumento> atividadeDocumento) {
-		this.atividadeDocumento = atividadeDocumento;
+	public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
+	}
+
+	public List<AtividadeDocumento> getAtividadeDocumentos() {
+		return atividadeDocumentos;
+	}
+
+	public void setAtividadeDocumentos(List<AtividadeDocumento> atividadeDocumentos) {
+		this.atividadeDocumentos = atividadeDocumentos;
 	}
 
 	@Override
@@ -87,9 +101,5 @@ public class Setor implements Serializable {
 			return false;
 		return true;
 	}
-
-	
-	
-	
 	
 }

@@ -1,11 +1,18 @@
 package com.ibepc.sishorasepc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /*Implementação da classe Usuário*/
 
@@ -19,11 +26,16 @@ public class Usuario implements Serializable {
 	private String nm_usuario;
 	private String tx_senha; /* corrigir depois usando chave ssh token */
 	
+	@JsonIgnore
+	@OneToMany (mappedBy = "usuario")
+	private List<AtividadeDocumento> atividadeDocumento = new ArrayList<>();
+	
+	
 	public Usuario () {
 		
 	}
-	
-	public Usuario(Integer id, String nm_usuario, String tx_senha) {
+		
+	public Usuario(Integer id, String nm_usuario) {
 		super();
 		this.id = id;
 		this.nm_usuario = nm_usuario;
@@ -52,6 +64,14 @@ public class Usuario implements Serializable {
 
 	public void setTx_senha(String tx_senha) {
 		this.tx_senha = tx_senha;
+	}
+	
+	public List<AtividadeDocumento> getAtividadeDocumento() {
+		return atividadeDocumento;
+	}
+
+	public void setAtividadeDocumento(List<AtividadeDocumento> atividadeDocumento) {
+		this.atividadeDocumento = atividadeDocumento;
 	}
 
 	@Override
