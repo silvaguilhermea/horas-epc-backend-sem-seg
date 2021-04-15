@@ -13,7 +13,7 @@ public class AreaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	private String nm_area;
+	private String nmArea;
 	private List<Projeto> projeto = new ArrayList<>();
 	
 
@@ -22,22 +22,22 @@ public class AreaDTO implements Serializable {
 	
 	public AreaDTO(Area area) {
 		super();
-		/* this.id = area.getId(); */
-		this.nm_area = area.getNm_area();
+		 this.id = area.getId(); 
+		this.nmArea = area.getNmArea();
 	}
 
-	/*
-	 * public Integer getId() { return id; }
-	 * 
-	 * public void setId(Integer id) { this.id = id; }
-	 */
+	
+	  public Integer getId() { return id; }
+	  
+	  public void setId(Integer id) { this.id = id; }
+	 
 
-	public String getNm_area() {
-		return nm_area;
+	public String getNmArea() {
+		return nmArea;
 	}
 
-	public void setNm_area(String nm_area) {
-		this.nm_area = nm_area;
+	public void setNmArea(String nmArea) {
+		this.nmArea = nmArea;
 	}
 
 	/*

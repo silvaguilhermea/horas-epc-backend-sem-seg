@@ -22,7 +22,7 @@ public class Area implements Serializable {
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String nm_area;
+	private String nmArea;
 	
 	@OneToMany(mappedBy = "area")
 	private List<Projeto> projeto = new ArrayList<>();
@@ -31,10 +31,10 @@ public class Area implements Serializable {
 	public Area() {
 	}
 	
-	public Area(Integer id, String nm_area) {
+	public Area(Integer id, String nmArea) {
 		super();
 		this.id = id;
-		this.nm_area = nm_area;
+		this.nmArea = nmArea;
 	}
 
 	public Integer getId() {
@@ -45,12 +45,12 @@ public class Area implements Serializable {
 		this.id = id;
 	}
 
-	public String getNm_area() {
-		return nm_area;
+	public String getNmArea() {
+		return nmArea;
 	}
 
-	public void setNm_area(String nm_area) {
-		this.nm_area = nm_area;
+	public void setNmArea(String nmArea) {
+		this.nmArea = nmArea;
 	}
 
 	public List<Projeto> getProjeto() {

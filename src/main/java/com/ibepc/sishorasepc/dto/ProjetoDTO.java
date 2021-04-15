@@ -12,16 +12,16 @@ public class ProjetoDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	private String nm_projeto;	
+	private String nmProjeto;	
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-	private Date dt_inicio; /* data de abertura do projeto */
+	private Date dtInicio; /* data de abertura do projeto */
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-	private Date dt_fim_planejado; /* data planejada de fim do projeto */	
+	private Date dtFimPlanejado; /* data planejada de fim do projeto */	
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-	private Date dt_fim_real; /* data real de fim do projeto */		
+	private Date dtFimReal; /* data real de fim do projeto */		
 	
 	private String area;	
 	private List<String> setor;
@@ -34,11 +34,11 @@ public class ProjetoDTO implements Serializable{
 	public ProjetoDTO( Projeto projeto) {
 		super();
 		this.id = projeto.getId();
-		this.nm_projeto = projeto.getNm_projeto();
-		this.dt_inicio = projeto.getDt_inicio();
-		this.dt_fim_planejado = projeto.getDt_fim_planejado();
-		this.dt_fim_real = projeto.getDt_fim_real();
-		this.area = projeto.getArea().getNm_area();
+		this.nmProjeto = projeto.getNmProjeto();
+		this.dtInicio = projeto.getDtInicio();
+		this.dtFimPlanejado = projeto.getDtFimPlanejado();
+		this.dtFimReal = projeto.getDtFimReal();
+		this.area = projeto.getArea().getNmArea();
 				
 	}
 
@@ -51,35 +51,35 @@ public class ProjetoDTO implements Serializable{
 	}
 
 	public String getNm_projeto() {
-		return nm_projeto;
+		return nmProjeto;
 	}
 
-	public void setNm_projeto(String nm_projeto) {
-		this.nm_projeto = nm_projeto;
+	public void setNmprojeto(String nmProjeto) {
+		this.nmProjeto = nmProjeto;
 	}
 
-	public Date getDt_inicio() {
-		return dt_inicio;
+	public Date getDtInicio() {
+		return dtInicio;
 	}
 
-	public void setDt_inicio(Date dt_inicio) {
-		this.dt_inicio = dt_inicio;
+	public void setDtInicio(Date dtInicio) {
+		this.dtInicio = dtInicio;
 	}
 
-	public Date getDt_fim_planejado() {
-		return dt_fim_planejado;
+	public Date getDtFimPlanejado() {
+		return dtFimPlanejado;
 	}
 
-	public void setDt_fim_planejado(Date dt_fim_planejado) {
-		this.dt_fim_planejado = dt_fim_planejado;
+	public void setDtFimPlanejado(Date dtFimPlanejado) {
+		this.dtFimPlanejado = dtFimPlanejado;
 	}
 
-	public Date getDt_fim_real() {
-		return dt_fim_real;
+	public Date getDtFimReal() {
+		return dtFimReal;
 	}
 
-	public void setDt_fim_real(Date dt_fim_real) {
-		this.dt_fim_real = dt_fim_real;
+	public void setDtFimReal(Date dtFimReal) {
+		this.dtFimReal = dtFimReal;
 	}
 
 	public String getArea() {

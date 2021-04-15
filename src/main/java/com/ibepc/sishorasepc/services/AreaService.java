@@ -5,9 +5,13 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.ibepc.sishorasepc.domain.Area;
+import com.ibepc.sishorasepc.domain.Projeto;
 import com.ibepc.sishorasepc.dto.AreaDTO;
 import com.ibepc.sishorasepc.repositories.AreaRepository;
 
@@ -30,5 +34,11 @@ public class AreaService {
 	public List<AreaDTO> converteDTO(List<Area> areas) {
 		List<AreaDTO> listDto = areas.stream().map(obj -> new AreaDTO(obj)).collect(Collectors.toList());
 		return listDto;
+	}
+	
+	public Page<Area> buscarPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction),orderBy);
+		return repo.findAll(pageRequest);
+
 	}
 }

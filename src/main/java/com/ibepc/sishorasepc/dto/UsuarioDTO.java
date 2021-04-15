@@ -13,13 +13,13 @@ public class UsuarioDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	private String nm_usuario;
-	private String tx_senha; /* corrigir depois usando chave ssh token */
-	private String nm_completo;
-	private String tx_email;
+	private String nmUsuario;
+	private String txSenha; /* corrigir depois usando chave ssh token */
+	private String nmCompleto;
+	private String txEmail;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-	private Date dt_inclusao; /* data de inclusão do usuário */
+	private Date dtInclusao; /* data de inclusão do usuário */
 	
 	public UsuarioDTO () {
 		
@@ -27,57 +27,59 @@ public class UsuarioDTO implements Serializable {
 		
 	public UsuarioDTO (Usuario usuario) {
 		super();
-		/* this.id = usuario.getId(); */
-		this.nm_usuario = usuario.getNm_usuario();
-		/* this.tx_senha = usuario.getTx_senha(); */
-		this.nm_completo = usuario.getNm_completo();
-		this.tx_email = usuario.getTx_email();
-		this.dt_inclusao = usuario.getDt_inclusao();
+		this.id = usuario.getId(); 
+		this.nmUsuario = usuario.getNmUsuario();
+		/* this.txSenha = usuario.getTxSenha(); */
+		this.nmCompleto = usuario.getNmCompleto();
+		this.txEmail = usuario.getTxEmail();
+		this.dtInclusao = usuario.getDtInclusao();
+	}
+
+	
+	  public Integer getId() { return id; }
+	  
+	  public void setId(Integer id) { this.id = id; }
+	 
+
+	public String getNmUsuario() {
+		return nmUsuario;
+	}
+
+	public void setNmUsuario(String nmUsuario) {
+		this.nmUsuario = nmUsuario;
 	}
 
 	/*
-	 * public Integer getId() { return id; }
+	 * public String getTxSenha() { return txSenha; }
 	 * 
-	 * public void setId(Integer id) { this.id = id; }
+	 * public void setTxSenha(String txSenha) { this.txSenha = txSenha; }
 	 */
 
-	public String getNm_usuario() {
-		return nm_usuario;
+	public String getNmCompleto() {
+		return nmCompleto;
 	}
 
-	public void setNm_usuario(String nm_usuario) {
-		this.nm_usuario = nm_usuario;
+	public void setNmCompleto(String nmCompleto) {
+		this.nmCompleto = nmCompleto;
 	}
 
-	/*
-	 * public String getTx_senha() { return tx_senha; }
-	 * 
-	 * public void setTx_senha(String tx_senha) { this.tx_senha = tx_senha; }
-	 */
-
-	public String getNm_completo() {
-		return nm_completo;
+	public String getTxEmail() {
+		return txEmail;
 	}
 
-	public void setNm_completo(String nm_completo) {
-		this.nm_completo = nm_completo;
+	public void setTxEmail(String txEmail) {
+		this.txEmail = txEmail;
 	}
 
-	public String getTx_email() {
-		return tx_email;
+	public Date getDtInclusao() {
+		return dtInclusao;
 	}
 
-	public void setTx_email(String tx_email) {
-		this.tx_email = tx_email;
+	public void setDtInclusao(Date dtInclusao) {
+		this.dtInclusao = dtInclusao;
 	}
 
-	public Date getDt_inclusao() {
-		return dt_inclusao;
-	}
 
-	public void setDt_inclusao(Date dt_inclusao) {
-		this.dt_inclusao = dt_inclusao;
-	}
 
 	/*
 	 * public List<AtividadeDocumento> getAtividadeDocumento() { return

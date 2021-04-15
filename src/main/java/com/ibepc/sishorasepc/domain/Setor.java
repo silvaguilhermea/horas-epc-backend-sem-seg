@@ -25,7 +25,7 @@ public class Setor implements Serializable {
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String nm_setor;
+	private String nmSetor;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -38,10 +38,10 @@ public class Setor implements Serializable {
 	public Setor() {
 	}
 
-	public Setor(Integer id, String nm_setor, Projeto projeto) {
+	public Setor(Integer id, String nmSetor, Projeto projeto) {
 		super();
 		this.id = id;
-		this.nm_setor = nm_setor;
+		this.nmSetor = nmSetor;
 		this.projeto = projeto;
 	}
 
@@ -53,12 +53,12 @@ public class Setor implements Serializable {
 		this.id = id;
 	}
 
-	public String getNm_setor() {
-		return nm_setor;
+	public String getNmSetor() {
+		return nmSetor;
 	}
 
-	public void setNm_setor(String nm_setor) {
-		this.nm_setor = nm_setor;
+	public void setNmSetor(String nmSetor) {
+		this.nmSetor = nmSetor;
 	}
 
 	public Projeto getProjeto() {

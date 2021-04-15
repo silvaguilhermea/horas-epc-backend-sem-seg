@@ -58,30 +58,30 @@ public class SishorasepcApplication implements CommandLineRunner {
 
 		/*-------------------------*/
 
-		Usuario usr1 = new Usuario(null, "William.goncalves", null,"William Felipe Gonçalves","william.goncalves@butantan.gov.br",c.getInstance().getTime());
-		Usuario usr2 = new Usuario(null, "Guilherme.dasilva", null, "Guillherme Antônio da Silva","guilherme.dasilva@butantan.gov.br",c.getInstance().getTime());
-		Usuario usr3 = new Usuario(null, "Isabela.Quental",null, "Isabela de Campos Quental","isabela.quental@butantan.gov.br",c.getInstance().getTime());
-		Usuario usr4 = new Usuario(null, "Oswaldo.Henrique",null,"Oswaldo Henrique Neto","oswaldo.henrique@butantan.gov.br",c.getInstance().getTime());
+		Usuario usr1 = new Usuario(null, "William.goncalves", null,"William Felipe Gonçalves","william.goncalves@butantan.gov.br",sdf.parse("10/05/2021 08:34"));
+		Usuario usr2 = new Usuario(null, "Guilherme.dasilva", null, "Guillherme Antônio da Silva","guilherme.dasilva@butantan.gov.br",sdf.parse("08/05/2021 08:34"));
+		Usuario usr3 = new Usuario(null, "Isabela.Quental",null, "Isabela de Campos Quental","isabela.quental@butantan.gov.br",sdf.parse("30/05/2021 08:34"));
+		Usuario usr4 = new Usuario(null, "Oswaldo.Henrique",null,"Oswaldo Henrique Neto","oswaldo.henrique@butantan.gov.br",sdf.parse("07/05/2021 08:34"));
 
 		Area a1 = new Area(null, "P59");
 		Area a2 = new Area(null, "P41 - FOR");
 
-		Projeto p1 = new Projeto(null, "CIP Clarificação", a1, c.getInstance().getTime(), datafim,
+		Projeto p1 = new Projeto(null, "CIP Clarificação", a1, c.getInstance().getTime(), sdf.parse("10/05/2021 08:34"),
 				sdf.parse("24/05/2021 08:34"));
-		Projeto p2 = new Projeto(null, "Reforma Colheita", a1, c.getInstance().getTime(), datafim, null);
-		Projeto p3 = new Projeto(null, "For sigle use", a2, c.getInstance().getTime(), datafim, null);
+		Projeto p2 = new Projeto(null, "Reforma Colheita", a1, c.getInstance().getTime(), sdf.parse("5/05/2021 08:34"), null);
+		Projeto p3 = new Projeto(null, "For sigle use", a2, c.getInstance().getTime(), sdf.parse("20/05/2021 08:34"), null);
 
 		Setor s1 = new Setor(null, "Automação", p1);
 		Setor s2 = new Setor(null, "Eng. Processos", p1);
 		Setor s3 = new Setor(null, "Automação", p3);
 		Setor s4 = new Setor(null, "Eng. Processos", p2);
 
-		AtividadeDocumento atvdoc1 = new AtividadeDocumento(null, "Arquitetura de rede", p1, s1, usr1);
-		AtividadeDocumento atvdoc2 = new AtividadeDocumento(null, "Lista de IO", p1, s1, usr2);
-		AtividadeDocumento atvdoc3 = new AtividadeDocumento(null, "Fluxograma", p1, s2, usr3);
-		AtividadeDocumento atvdoc4 = new AtividadeDocumento(null, "P&ID", p1, s2, usr4);
-		AtividadeDocumento atvdoc5 = new AtividadeDocumento(null, "Lista quantitativa", p2, s4, usr4);
-		AtividadeDocumento atvdoc6 = new AtividadeDocumento(null, "Desenvolvimento de software", p3, s3, usr1);
+		AtividadeDocumento atvdoc1 = new AtividadeDocumento(null, "Arquitetura de rede",sdf.parse("05/05/2021 08:34"), p1, s1, usr1);
+		AtividadeDocumento atvdoc2 = new AtividadeDocumento(null, "Lista de IO",sdf.parse("10/05/2021 08:34"), p1, s1, usr2);
+		AtividadeDocumento atvdoc3 = new AtividadeDocumento(null, "Fluxograma",sdf.parse("15/05/2021 08:34"), p1, s2, usr3);
+		AtividadeDocumento atvdoc4 = new AtividadeDocumento(null, "P&ID",sdf.parse("20/05/2021 08:34"), p1, s2, usr4);
+		AtividadeDocumento atvdoc5 = new AtividadeDocumento(null, "Lista quantitativa",sdf.parse("25/05/2021 08:34"), p2, s4, usr4);
+		AtividadeDocumento atvdoc6 = new AtividadeDocumento(null, "Desenvolvimento de software",sdf.parse("30/05/2021 08:34"), p3, s3, usr1);
 
 		usuarioRepository.saveAll(Arrays.asList(usr1, usr2,usr3,usr4));
 		areaRepository.saveAll(Arrays.asList(a1, a2));

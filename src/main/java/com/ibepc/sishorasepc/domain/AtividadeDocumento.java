@@ -2,6 +2,7 @@ package com.ibepc.sishorasepc.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -21,7 +23,10 @@ public class AtividadeDocumento implements Serializable {
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String nm_atividade_documento;
+	private String nmAtividadeDocumento;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	private Date dtFimPlanejado; /* data de Fim planejado para o documento */
 	
 	@JsonIgnore
 	@ManyToOne
@@ -42,17 +47,17 @@ public class AtividadeDocumento implements Serializable {
 
 	  }	
 	
-	public AtividadeDocumento(Integer id, String nm_atividade_documento, Projeto projeto, Setor setor,
-			Usuario usuario) {
+
+	public AtividadeDocumento(Integer id, String nmAtividadeDocumento, Date dtFimPlanejado, Projeto projeto,
+			Setor setor, Usuario usuario) {
 		super();
 		this.id = id;
-		this.nm_atividade_documento = nm_atividade_documento;
+		this.nmAtividadeDocumento = nmAtividadeDocumento;
+		this.dtFimPlanejado = dtFimPlanejado;
 		this.projeto = projeto;
 		this.setor = setor;
 		this.usuario = usuario;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -61,16 +66,24 @@ public class AtividadeDocumento implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-		
-	public String getNm_atividade_documento() {
-		return nm_atividade_documento;
+	
+	public String getNmAtividadeDocumento() {
+		return nmAtividadeDocumento;
 	}
 
-	public void setNm_atividade_documento(String nm_atividade_documento) {
-		this.nm_atividade_documento = nm_atividade_documento;
+	public void setNmAtividadeDocumento(String nmAtividadeDocumento) {
+		this.nmAtividadeDocumento = nmAtividadeDocumento;
 	}
 	
+	public Date getDtFimPlanejado() {
+		return dtFimPlanejado;
+	}
+
+	public void setDtFimPlanejado(Date dtFimPlanejado) {
+		this.dtFimPlanejado = dtFimPlanejado;
+	}
+
+
 	public Projeto getProjeto() {
 		return projeto;
 	}

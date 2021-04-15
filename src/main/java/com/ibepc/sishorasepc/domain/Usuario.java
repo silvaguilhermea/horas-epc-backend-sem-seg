@@ -25,13 +25,13 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String nm_usuario;
-	private String tx_senha; /* corrigir depois usando chave ssh token */
-	private String nm_completo;
-	private String tx_email;
+	private String nmUsuario;
+	private String txSenha; /* corrigir depois usando chave ssh token */
+	private String nmCompleto;
+	private String txEmail;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-	private Date dt_inclusao; /* data de inclusão do usuário */
+	private Date dtInclusao; /* data de inclusão do usuário */
 	
 	@JsonIgnore
 	@OneToMany (mappedBy = "usuario")
@@ -42,15 +42,15 @@ public class Usuario implements Serializable {
 		
 	}
 		
-	public Usuario(Integer id, String nm_usuario, String tx_senha, String nm_completo, String tx_email,
-			Date dt_inclusao) {
+	public Usuario(Integer id, String nmUsuario, String txSenha, String nmCompleto, String txEmail,
+			Date dtInclusao) {
 		super();
 		this.id = id;
-		this.nm_usuario = nm_usuario;
-		this.tx_senha = tx_senha;
-		this.nm_completo = nm_completo;
-		this.tx_email = tx_email;
-		this.dt_inclusao = dt_inclusao;
+		this.nmUsuario = nmUsuario;
+		this.txSenha = txSenha;
+		this.nmCompleto = nmCompleto;
+		this.txEmail = txEmail;
+		this.dtInclusao = dtInclusao;
 	}
 
 	public Integer getId() {
@@ -61,44 +61,44 @@ public class Usuario implements Serializable {
 		this.id = id;
 	}
 
-	public String getNm_usuario() {
-		return nm_usuario;
+	public String getNmUsuario() {
+		return nmUsuario;
 	}
 
-	public void setNm_usuario(String nm_usuario) {
-		this.nm_usuario = nm_usuario;
+	public void setNmUsuario(String nmUsuario) {
+		this.nmUsuario = nmUsuario;
 	}
 
-	public String getTx_senha() {
-		return tx_senha;
+	public String getTxSenha() {
+		return txSenha;
 	}
 
-	public void setTx_senha(String tx_senha) {
-		this.tx_senha = tx_senha;
+	public void setTxSenha(String txSenha) {
+		this.txSenha = txSenha;
 	}
 
-	public String getNm_completo() {
-		return nm_completo;
+	public String getNmCompleto() {
+		return nmCompleto;
 	}
 
-	public void setNm_completo(String nm_completo) {
-		this.nm_completo = nm_completo;
+	public void setNmCompleto(String nmCompleto) {
+		this.nmCompleto = nmCompleto;
 	}
 
-	public String getTx_email() {
-		return tx_email;
+	public String getTxEmail() {
+		return txEmail;
 	}
 
-	public void setTx_email(String tx_email) {
-		this.tx_email = tx_email;
+	public void setTxEmail(String txEmail) {
+		this.txEmail = txEmail;
 	}
 
-	public Date getDt_inclusao() {
-		return dt_inclusao;
+	public Date getDtInclusao() {
+		return dtInclusao;
 	}
 
-	public void setDt_inclusao(Date dt_inclusao) {
-		this.dt_inclusao = dt_inclusao;
+	public void setDtInclusao(Date dtInclusao) {
+		this.dtInclusao = dtInclusao;
 	}
 
 	public List<AtividadeDocumento> getAtividadeDocumento() {

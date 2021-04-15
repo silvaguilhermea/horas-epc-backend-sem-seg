@@ -14,16 +14,16 @@ public class Status implements Serializable{
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String nm_status;
+	private String nmStatus;
 	
 	public Status() {
 		
 	}
 	
-	public Status(Integer id, String nm_status) {
+	public Status(Integer id, String nmStatus) {
 		super();
 		this.id = id;
-		this.nm_status = nm_status;
+		this.nmStatus = nmStatus;
 	}
 
 	public Integer getId() {
@@ -34,13 +34,40 @@ public class Status implements Serializable{
 		this.id = id;
 	}
 
-	public String getNm_status() {
-		return nm_status;
+	public String getNmStatus() {
+		return nmStatus;
 	}
 
-	public void setNm_status(String nm_status) {
-		this.nm_status = nm_status;
+	public void setNmStatus(String nmStatus) {
+		this.nmStatus = nmStatus;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Status other = (Status) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
+	
 
 	
 }
