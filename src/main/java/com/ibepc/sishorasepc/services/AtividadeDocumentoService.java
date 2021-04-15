@@ -19,6 +19,7 @@ import com.ibepc.sishorasepc.domain.Projeto;
 import com.ibepc.sishorasepc.dto.AreaDTO;
 import com.ibepc.sishorasepc.dto.AtividadeDocumentoDTO;
 import com.ibepc.sishorasepc.repositories.AtividadeDocumentoRepository;
+import com.ibepc.sishorasepc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class AtividadeDocumentoService{
@@ -30,8 +31,9 @@ public class AtividadeDocumentoService{
 	public AtividadeDocumentoRepository repo;
 	
 	public AtividadeDocumento buscar(Integer id) {
-		 Optional<AtividadeDocumento> obj = repo.findById(id);
-		return obj.orElse(null); 
+		Optional<AtividadeDocumento> obj = repo.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + AtividadeDocumento.class.getName()));
 	}
 	
 	public List<AtividadeDocumento> buscarTudo() {

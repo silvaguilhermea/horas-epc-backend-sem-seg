@@ -10,9 +10,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.ibepc.sishorasepc.domain.Area;
 import com.ibepc.sishorasepc.domain.Projeto;
 import com.ibepc.sishorasepc.dto.ProjetoDTO;
 import com.ibepc.sishorasepc.repositories.ProjetoRepository;
+import com.ibepc.sishorasepc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ProjetoService{
@@ -21,8 +23,9 @@ public class ProjetoService{
 	public ProjetoRepository repo;
 	
 	public Projeto buscar(Integer id) {
-		 Optional<Projeto> obj = repo.findById(id);
-		return obj.orElse(null); 
+		Optional<Projeto> obj = repo.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+		 "Objeto não encontrado! Id: " + id + ", Tipo: " + Projeto.class.getName()));
 	}
 	
 	public List<Projeto>  buscarTudo() {
