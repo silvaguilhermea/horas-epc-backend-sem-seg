@@ -1,6 +1,6 @@
-package com.ibepc.sishorasepc.services;
+package com.ibepc.sishorasepc.resources;
 
-import com.ibepc.sishorasepc.domain.User;
+import com.ibepc.sishorasepc.domain.Funcionario;
 import com.ibepc.sishorasepc.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +17,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void salvar( @RequestBody User usuario ){
+    public void salvar( @RequestBody Funcionario usuario ){
         repository.save(usuario);
     }
 }

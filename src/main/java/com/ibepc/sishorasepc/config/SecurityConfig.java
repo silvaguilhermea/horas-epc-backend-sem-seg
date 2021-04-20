@@ -1,5 +1,8 @@
 package com.ibepc.sishorasepc.config;
 
+import com.ibepc.sishorasepc.service.UserService;
+import com.ibepc.sishorasepc.services.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,13 +20,14 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private UserService usuarioService;
+
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.
-                inMemoryAuthentication()
-                    .withUser("fulano")
-                    .password("123")
-                    .roles("USER");
+        auth
+             .userDetailsService(usuarioService)
+             .passwordEncoder(passwordEncoder());
     }
 
     @Bean
