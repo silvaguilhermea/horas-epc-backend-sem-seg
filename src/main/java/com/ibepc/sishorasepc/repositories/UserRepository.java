@@ -9,4 +9,7 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<Funcionario, Integer> {
     Optional<Funcionario> findByUsername(String username);
+
+    // select count (*) > 0 from usuario where username = :login
+    boolean existsByUsername(String username);
 }

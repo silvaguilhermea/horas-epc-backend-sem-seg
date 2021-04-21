@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+//import javax.validation.constraints.NotEmpty;
 
 /* GUILHERME 20/04/21 */
 
@@ -17,8 +18,10 @@ public class Funcionario {
     private Integer id;
 
     @Column(unique = true)
+    //@NotEmpty(message = "{campo.login.obrigatorio}")
     private String username;
 
     @Column
+    //@NotEmpty(message = "{campo.senha.obrigatorio}")
     private String password;
 }
