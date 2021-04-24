@@ -31,7 +31,7 @@ public class UsuarioDTO implements Serializable {
 		this.nmUsuario = usuario.getNmUsuario();
 		/* this.txSenha = usuario.getTxSenha(); */
 		this.nmCompleto = usuario.getNmCompleto();
-		this.txEmail = usuario.getTxEmail();
+		this.txEmail = usuario.getEmail();
 		this.dtInclusao = usuario.getDtInclusao();
 	}
 

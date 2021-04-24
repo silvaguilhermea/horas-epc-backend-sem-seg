@@ -21,10 +21,16 @@ import com.ibepc.sishorasepc.repositories.AtividadeDocumentoRepository;
 import com.ibepc.sishorasepc.repositories.ProjetoRepository;
 import com.ibepc.sishorasepc.repositories.SetorRepository;
 import com.ibepc.sishorasepc.repositories.UsuarioRepository;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class SishorasepcApplication implements CommandLineRunner {
-	
+	@Autowired
+	private BCryptPasswordEncoder pe;
+
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
@@ -58,10 +64,11 @@ public class SishorasepcApplication implements CommandLineRunner {
 
 		/*-------------------------*/
 
-		Usuario usr1 = new Usuario(null, "William.goncalves", null,"William Felipe Gonçalves","william.goncalves@butantan.gov.br",sdf.parse("10/05/2021 08:34"));
-		Usuario usr2 = new Usuario(null, "Guilherme.dasilva", null, "Guillherme Antônio da Silva","guilherme.dasilva@butantan.gov.br",sdf.parse("08/05/2021 08:34"));
-		Usuario usr3 = new Usuario(null, "Isabela.Quental",null, "Isabela de Campos Quental","isabela.quental@butantan.gov.br",sdf.parse("30/05/2021 08:34"));
-		Usuario usr4 = new Usuario(null, "Oswaldo.Henrique",null,"Oswaldo Henrique Neto","oswaldo.henrique@butantan.gov.br",sdf.parse("07/05/2021 08:34"));
+
+		Usuario usr1 = new Usuario(null, "William.goncalves", pe.encode("234"),"William Felipe Gonçalves","william.goncalves@butantan.gov.br",sdf.parse("10/05/2021 08:34"));
+		Usuario usr2 = new Usuario(null, "Guilherme.dasilva", pe.encode("234"), "Guillherme Antônio da Silva","guilherme.dasilva@butantan.gov.br",sdf.parse("08/05/2021 08:34"));
+		Usuario usr3 = new Usuario(null, "Isabela.Quental", pe.encode("234"), "Isabela de Campos Quental","isabela.quental@butantan.gov.br",sdf.parse("30/05/2021 08:34"));
+		Usuario usr4 = new Usuario(null, "Oswaldo.Henrique", pe.encode("234"),"Oswaldo Henrique Neto","oswaldo.henrique@butantan.gov.br",sdf.parse("07/05/2021 08:34"));
 
 		Area a1 = new Area(null, "P59");
 		Area a2 = new Area(null, "P41 - FOR");
@@ -83,6 +90,7 @@ public class SishorasepcApplication implements CommandLineRunner {
 		AtividadeDocumento atvdoc5 = new AtividadeDocumento(null, "Lista quantitativa",sdf.parse("25/05/2021 08:34"), p2, s4, usr4);
 		AtividadeDocumento atvdoc6 = new AtividadeDocumento(null, "Desenvolvimento de software",sdf.parse("30/05/2021 08:34"), p3, s3, usr1);
 
+
 		usuarioRepository.saveAll(Arrays.asList(usr1, usr2,usr3,usr4));
 		areaRepository.saveAll(Arrays.asList(a1, a2));
 		projetoRepository.saveAll(Arrays.asList(p1, p2, p3));
@@ -90,4 +98,5 @@ public class SishorasepcApplication implements CommandLineRunner {
 		atividadeDocumentoRepository.saveAll(Arrays.asList(atvdoc1, atvdoc2, atvdoc3, atvdoc4, atvdoc5, atvdoc6));
 
 	}
+
 }

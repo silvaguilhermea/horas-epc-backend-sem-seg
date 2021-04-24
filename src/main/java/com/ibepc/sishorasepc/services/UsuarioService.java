@@ -4,15 +4,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.ibepc.sishorasepc.security.UsuarioSS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.ibepc.sishorasepc.domain.Area;
-import com.ibepc.sishorasepc.domain.Projeto;
 import com.ibepc.sishorasepc.domain.Usuario;
 import com.ibepc.sishorasepc.dto.UsuarioDTO;
 import com.ibepc.sishorasepc.repositories.UsuarioRepository;
@@ -24,9 +25,13 @@ public class UsuarioService {
 
 	@Autowired
 	public UsuarioRepository repo;
-	
+
+	@Autowired
+	private BCryptPasswordEncoder pe;
+
 	public Usuario insert(Usuario obj) {
 		obj.setId(null);
+		obj.setSenha(pe.encode(obj.getSenha()));
 		return repo.save(obj);
 	}
 	
@@ -65,5 +70,23 @@ public class UsuarioService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction),orderBy);
 		return repo.findAll(pageRequest);
 
+	}
+
+	public static UsuarioSS authenticated() {
+		try {
+			return (UsuarioSS) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		}
+		catch(Exception e) {
+			return null;
+		}
+	}
+
+
+	public Usuario findByEmail(String email) {
+		Usuario obj = repo.findByEmail(email);
+		if(obj == null) {
+			throw new ObjectNotFoundException("Usuario não encontrado! " + email + ", Classe:" + Usuario.class.getName());
+		}
+		return obj;
 	}
 }

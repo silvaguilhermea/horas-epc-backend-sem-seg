@@ -1,20 +1,14 @@
 package com.ibepc.sishorasepc.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ibepc.sishorasepc.enums.Perfil;
 
 /*Implementação da classe Usuário*/
 
@@ -26,9 +20,14 @@ public class Usuario implements Serializable {
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nmUsuario;
-	private String txSenha; /* corrigir depois usando chave ssh token */
+	private String senha; /* corrigir depois usando chave ssh token */
 	private String nmCompleto;
-	private String txEmail;
+	private String email;
+
+	// EAGER serve para forçar a vinda da lista de perfil na busca do objeto
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="PERFIS")
+	private Set<Integer> perfis = new HashSet<>();
 	
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date dtInclusao; /* data de inclusão do usuário */
@@ -39,7 +38,7 @@ public class Usuario implements Serializable {
 	
 	
 	public Usuario () {
-		
+		addPerfil(Perfil.USUARIO);
 	}
 		
 	public Usuario(Integer id, String nmUsuario, String txSenha, String nmCompleto, String txEmail,
@@ -47,10 +46,11 @@ public class Usuario implements Serializable {
 		super();
 		this.id = id;
 		this.nmUsuario = nmUsuario;
-		this.txSenha = txSenha;
+		this.senha = txSenha;
 		this.nmCompleto = nmCompleto;
-		this.txEmail = txEmail;
+		this.email = txEmail;
 		this.dtInclusao = dtInclusao;
+		addPerfil(Perfil.USUARIO);
 	}
 
 	public Integer getId() {
@@ -69,12 +69,12 @@ public class Usuario implements Serializable {
 		this.nmUsuario = nmUsuario;
 	}
 
-	public String getTxSenha() {
-		return txSenha;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setTxSenha(String txSenha) {
-		this.txSenha = txSenha;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public String getNmCompleto() {
@@ -85,12 +85,12 @@ public class Usuario implements Serializable {
 		this.nmCompleto = nmCompleto;
 	}
 
-	public String getTxEmail() {
-		return txEmail;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setTxEmail(String txEmail) {
-		this.txEmail = txEmail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Date getDtInclusao() {
@@ -107,6 +107,21 @@ public class Usuario implements Serializable {
 
 	public void setAtividadeDocumento(List<AtividadeDocumento> atividadeDocumento) {
 		this.atividadeDocumento = atividadeDocumento;
+	}
+
+	public Set<Perfil> getPerfis()
+	{
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+
+	public void addPerfil(Perfil perfil)
+	{
+		perfis.add(perfil.getCod());
+	}
+
+	public void alterarPerfil(Perfil perfil) {
+		perfis.clear();
+		perfis.add(perfil.getCod());
 	}
 
 	@Override
@@ -133,7 +148,20 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Usuario{" +
+				"id=" + id +
+				", nmUsuario='" + nmUsuario + '\'' +
+				", senha='" + senha + '\'' +
+				", nmCompleto='" + nmCompleto + '\'' +
+				", email='" + email + '\'' +
+				", perfis=" + perfis +
+				", dtInclusao=" + dtInclusao +
+				", atividadeDocumento=" + atividadeDocumento +
+				'}';
+	}
+
 
 }

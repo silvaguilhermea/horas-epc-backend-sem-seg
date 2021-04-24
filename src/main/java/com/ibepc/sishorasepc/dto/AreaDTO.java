@@ -11,26 +11,26 @@ import com.ibepc.sishorasepc.domain.Projeto;
 
 public class AreaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
 	private String nmArea;
 	private List<Projeto> projeto = new ArrayList<>();
-	
+
 
 	public AreaDTO() {
 	}
-	
+
 	public AreaDTO(Area area) {
 		super();
-		 this.id = area.getId(); 
+		this.id = area.getId();
 		this.nmArea = area.getNmArea();
 	}
 
-	
-	  public Integer getId() { return id; }
-	  
-	  public void setId(Integer id) { this.id = id; }
-	 
+
+	public Integer getId() { return id; }
+
+	public void setId(Integer id) { this.id = id; }
+
 
 	public String getNmArea() {
 		return nmArea;
@@ -42,8 +42,8 @@ public class AreaDTO implements Serializable {
 
 	/*
 	 * public List<Projeto> getProjeto() { return projeto; }
-	 * 
+	 *
 	 * public void setProjeto(List<Projeto> projeto) { this.projeto = projeto; }
 	 */
-	
+
 }

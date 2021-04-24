@@ -1,18 +1,7 @@
 package com.ibepc.sishorasepc.service;
 
-import com.ibepc.sishorasepc.exception.UsuarioCadastradoException;
-import com.ibepc.sishorasepc.domain.Funcionario;
-import com.ibepc.sishorasepc.repositories.UserRepository;
-import com.ibepc.sishorasepc.repositories.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
-
 /* GUILHERME 20/04/2021 */
-
+/*
 @Service
 public class UserService implements UserDetailsService {
 
@@ -39,4 +28,4 @@ public class UserService implements UserDetailsService {
                 .roles("USER")
                 .build();
     }
-}
+}*/
