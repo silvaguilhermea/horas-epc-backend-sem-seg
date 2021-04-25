@@ -4,14 +4,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.ibepc.sishorasepc.security.UsuarioSS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ibepc.sishorasepc.domain.Usuario;
@@ -26,12 +23,10 @@ public class UsuarioService {
 	@Autowired
 	public UsuarioRepository repo;
 
-	@Autowired
-	private BCryptPasswordEncoder pe;
 
 	public Usuario insert(Usuario obj) {
 		obj.setId(null);
-		obj.setSenha(pe.encode(obj.getSenha()));
+		obj.setTxSenha(obj.getTxSenha());
 		return repo.save(obj);
 	}
 	
@@ -72,18 +67,8 @@ public class UsuarioService {
 
 	}
 
-	public static UsuarioSS authenticated() {
-		try {
-			return (UsuarioSS) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		}
-		catch(Exception e) {
-			return null;
-		}
-	}
-
-
 	public Usuario findByEmail(String email) {
-		Usuario obj = repo.findByEmail(email);
+		Usuario obj = repo.findBytxEmail(email);
 		if(obj == null) {
 			throw new ObjectNotFoundException("Usuario não encontrado! " + email + ", Classe:" + Usuario.class.getName());
 		}

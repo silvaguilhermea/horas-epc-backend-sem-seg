@@ -11,7 +11,7 @@ import com.ibepc.sishorasepc.domain.Usuario;
 
 public class UsuarioDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
 	private String nmUsuario;
 	private String txSenha; /* corrigir depois usando chave ssh token */
@@ -29,16 +29,16 @@ public class UsuarioDTO implements Serializable {
 		super();
 		this.id = usuario.getId(); 
 		this.nmUsuario = usuario.getNmUsuario();
-		/* this.txSenha = usuario.getTxSenha(); */
+		this.txSenha = usuario.getTxSenha();
 		this.nmCompleto = usuario.getNmCompleto();
-		this.txEmail = usuario.getEmail();
+		this.txEmail = usuario.getTxEmail();
 		this.dtInclusao = usuario.getDtInclusao();
 	}
 
 	
-	  public Integer getId() { return id; }
+	public Integer getId() { return id; }
 	  
-	  public void setId(Integer id) { this.id = id; }
+	public void setId(Integer id) { this.id = id; }
 	 
 
 	public String getNmUsuario() {
@@ -49,11 +49,8 @@ public class UsuarioDTO implements Serializable {
 		this.nmUsuario = nmUsuario;
 	}
 
-	/*
-	 * public String getTxSenha() { return txSenha; }
-	 * 
-	 * public void setTxSenha(String txSenha) { this.txSenha = txSenha; }
-	 */
+
+	 public String getTxSenha() { return txSenha; }
 
 	public String getNmCompleto() {
 		return nmCompleto;

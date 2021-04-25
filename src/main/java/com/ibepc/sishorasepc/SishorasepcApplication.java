@@ -21,15 +21,9 @@ import com.ibepc.sishorasepc.repositories.AtividadeDocumentoRepository;
 import com.ibepc.sishorasepc.repositories.ProjetoRepository;
 import com.ibepc.sishorasepc.repositories.SetorRepository;
 import com.ibepc.sishorasepc.repositories.UsuarioRepository;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class SishorasepcApplication implements CommandLineRunner {
-	@Autowired
-	private BCryptPasswordEncoder pe;
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
@@ -65,10 +59,10 @@ public class SishorasepcApplication implements CommandLineRunner {
 		/*-------------------------*/
 
 
-		Usuario usr1 = new Usuario(null, "William.goncalves", pe.encode("234"),"William Felipe Gonçalves","william.goncalves@butantan.gov.br",sdf.parse("10/05/2021 08:34"));
-		Usuario usr2 = new Usuario(null, "Guilherme.dasilva", pe.encode("234"), "Guillherme Antônio da Silva","guilherme.dasilva@butantan.gov.br",sdf.parse("08/05/2021 08:34"));
-		Usuario usr3 = new Usuario(null, "Isabela.Quental", pe.encode("234"), "Isabela de Campos Quental","isabela.quental@butantan.gov.br",sdf.parse("30/05/2021 08:34"));
-		Usuario usr4 = new Usuario(null, "Oswaldo.Henrique", pe.encode("234"),"Oswaldo Henrique Neto","oswaldo.henrique@butantan.gov.br",sdf.parse("07/05/2021 08:34"));
+		Usuario usr1 = new Usuario(null, "william.goncalves", "234", "William Felipe Gonçalves","william.goncalves@butantan.gov.br",sdf.parse("10/05/2021 08:34"));
+		Usuario usr2 = new Usuario(null, "guilherme.dasilva", "234", "Guillherme Antonio da Silva","guilherme.dasilva@butantan.gov.br",sdf.parse("08/05/2021 08:34"));
+		Usuario usr3 = new Usuario(null, "isabela.quental", "234", "Isabela de Campos Quental","isabela.quental@butantan.gov.br",sdf.parse("30/05/2021 08:34"));
+		Usuario usr4 = new Usuario(null, "oswaldo.henrique", "234","Oswaldo Henrique Neto","oswaldo.henrique@butantan.gov.br",sdf.parse("07/05/2021 08:34"));
 
 		Area a1 = new Area(null, "P59");
 		Area a2 = new Area(null, "P41 - FOR");
